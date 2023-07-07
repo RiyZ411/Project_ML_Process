@@ -4,70 +4,86 @@ import joblib
 from PIL import Image
 
 # Load and set images in the first place
-header_images = Image.open('assets/banner.png')
+header_images = Image.open('/home/riyan/MLProject/pencemaran_udara_jakarta/assets/monas.jpg')
 st.image(header_images)
 
 # Add some information about the service
-st.title("Smoke Prediction")
+st.title("Prediksi Polusi Udara Jakarta")
 st.subheader("Just enter variabel below then click Predict button :sunglasses:")
 
 # Create form of input
 with st.form(key = "air_data_form"):
     # Create box for number input
-    temperature = st.number_input(
-        label = "1.\tEnter Temperature[C] Value:",
-        min_value = -40,
-        max_value = 125,
-        help = "Value range from -40 to 125"
+    stasiun = st.number_input(
+        label = "1.\tEnter Stasiun Value:",
+        min_value = 0,
+        max_value = 4,
+        help = "Value range from 0 to 4:" 
+                "\n- 0 : DKI1 (Bunderan HI)"
+                "\n- 1 : DKI2 (Kelapa Gading)"
+                "\n- 2 : DKI3 (Jagakarsa)"
+                "\n- 3 : DKI4 (Lubang Buaya)"
+                "\n- 4 : DKI5 (Kebon Jeruk) Jakarta Barat"
     )
 
-    humidity = st.number_input(
-        label = "2.\tEnter Humidity[%] Value:",
-        min_value = 0,
-        max_value = 100,
-        help = "Value range from 0 to 100"
+    pm10 = st.number_input(
+        label = "2.\tEnter pm10 Value:",
+        min_value = 15,
+        max_value = 179,
+        help = "Value range from 15 to 179"
     )
     
-    pressure = st.number_input(
-        label = "3.\tEnter Pressure[hPa] Value:",
-        min_value = 300,
-        max_value = 1250,
-        help = "Value range from 300 to 1250"
+    pm25 = st.number_input(
+        label = "3.\tEnter pm25 Value:",
+        min_value = 20,
+        max_value = 174,
+        help = "Value range from 20 to 174"
     )
 
-    pm1 = st.number_input(
-        label = "4.\tEnter PM1.0 Value:",
+    so2 = st.number_input(
+        label = "4.\tEnter so2 Value:",
+        min_value = 4,
+        max_value = 82,
+        help = "Value range from 4 to 82"
+    )
+
+    co = st.number_input(
+        label = "5.\tEnter co Value:",
+        min_value = 2,
+        max_value = 30,
+        help = "Value range from 2 to 30"
+    )
+
+    o3 = st.number_input(
+        label = "6.\tEnter o3 Value:",
+        min_value = 8,
+        max_value = 81,
+        help = "Value range from 8 to 81"
+    )
+
+    no2 = st.number_input(
+        label = "7.\tEnter no2 Value:",
+        min_value = 4,
+        max_value = 65,
+        help = "Value range from 4 to 65"
+    )
+
+    max = st.number_input(
+        label = "8.\tEnter max Value:",
+        min_value = 26,
+        max_value = 179,
+        help = "Value range from 26 to 179"
+    )
+
+    critical = st.number_input(
+        label = "9.\tEnter critical Value:",
         min_value = 0,
-        max_value = 65535,
-        help = "Value range from 0 to 65535"
-    )
-
-    tvoc = st.number_input(
-        label = "5.\tEnter TVOC[ppb] Value:",
-        min_value = 0,
-        max_value = 60000,
-        help = "Value range from 0 to 60000"
-    )
-
-    eco2 = st.number_input(
-        label = "6.\tEnter eCO2[ppm] Value:",
-        min_value = 400,
-        max_value = 60000,
-        help = "Value range from 400 to 60000"
-    )
-
-    h2 = st.number_input(
-        label = "7.\tEnter Raw H2 Value:",
-        min_value = 0,
-        max_value = 60000,
-        help = "Value range from 0 to 60000"
-    )
-
-    ethanol = st.number_input(
-        label = "8.\tEnter Raw Ethanol Value:",
-        min_value = 0,
-        max_value = 60000,
-        help = "Value range from 0 to 60000"
+        max_value = 3,
+        help = "Value range from 0 to 3:"
+                "\n- 0 : PM25"
+                "\n- 1 : SO2"
+                "\n- 2 : PM10"
+                "\n- 3 : O3"
     )
     
     # Create button to submit the form
@@ -77,19 +93,20 @@ with st.form(key = "air_data_form"):
     if submitted:
         # Create dict of all data in the form
         raw_data = {
-            "Temperature": temperature,
-            "Humidity": humidity,
-            "Pressure": pressure,
-            "PM1": pm1,
-            "TVOC": tvoc,
-            "eCO2": eco2,
-            "H2": h2,
-            "Ethanol": ethanol
+            "stasiun": stasiun,
+            "pm10": pm10,
+            "pm25": pm25,
+            "so2": so2,
+            "co": co,
+            "o3": o3,
+            "no2": no2,
+            "max": max,
+            "critical": critical
         }
 
         # Create loading animation while predicting
         with st.spinner("Sending data to prediction server ..."):
-            res = requests.post("http://api_backend:8080/predict", json = raw_data).json()
+            res = requests.post(f"http://127.0.0.1:8000/predict", json = raw_data).json()
             
         # Parse the prediction result
         if res["error_msg"] != "":
@@ -97,5 +114,9 @@ with st.form(key = "air_data_form"):
         else:
             if res["res"] != "Tidak ada api.":
                 st.warning("Ada api.")
+                if res['prediction'] == 0:
+                    st.success("Kondisi udara diprediksi : TIDAK SEHAT")
+                else:
+                    st.success("Kondisi udara diprediksi : BAIK")
             else:
                 st.success("Tidak ada api.")
