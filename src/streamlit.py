@@ -106,7 +106,7 @@ with st.form(key = "air_data_form"):
 
         # Create loading animation while predicting
         with st.spinner("Sending data to prediction server ..."):
-            res = requests.post(f"http://127.0.0.1:8000/predict", json = raw_data).json()
+            res = requests.post(f"http://api_backend/predict", json = raw_data).json()
             
         # Parse the prediction result
         if res["error_msg"] != "":
