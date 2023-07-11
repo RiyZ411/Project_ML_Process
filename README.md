@@ -671,9 +671,9 @@ Untuk menjalankan docker di lokal computer sebagai berikut:
 - Aktifkan docker yang sudah diinstall dengan perintah "sudo service docker start"
 - Jika sudah aktif, ketik "sudo docker compose build" lalu ketik enter
 - Aktifkan docker dengan perintah "sudo docker compose up"             
-    ![compose](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/EC2/running%20docker.png)
+    ![compose](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/compose.png)
 - Lalu masuk ke browser, masukkan link "http://localhost:8501/" jika berhasil, maka akan muncul seperti berikut:         
-    ![dockerlokal](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/EC2/publik.png)
+    ![dockerlokal](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/streamlit.png)
 
 ### Docker AWS EC2
 Untuk menjalankan docker di AWS EC2, pastikan sudah mendaftar dan membuat instance EC2 di AWS, sesuaikan OS yang digunakan. Jika sudah, nanti akan terdownload otomatis file dengan format .pem. Simpan baik-baik file tersebut, file tersebut nantinya digunakan untuk mengaktifkan EC2, berikut cara mengaktifkan EC2:
@@ -688,4 +688,36 @@ Untuk menjalankan docker di AWS EC2, pastikan sudah mendaftar dan membuat instan
     sudo ssh -i "pacmann-key-aws.pem" ubuntu@ec2-54-179-75-24.ap-southeast-1.compute.amazonaws.com
     ```
 - Clone project dengan perintah git clone "nama repository"
+- Lalu install git lfs:
+    ```ubuntu
+    sudo apt-get install git-lfs
+    ```
+- Clone project dengan perintah git clone "nama repository"
+- Arahkan command ubuntu ke project, lalu jalankan kedua kode berikut:
+    ```ubuntu
+    sudo docker compose build
+    ```
+     ```ubuntu
+    sudo docker compose up
+    ```
+- Edit login rules yang ada di AWS, seasuaikan dengan port yang digunakan agar website bisa diakses, lalu masuk ke   browser dan masukkan "ip_publik:port", lalu buka dan sekarang website sudah bia diakses secara publik:
+![publ](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/EC2/publik.png)
+
+### CICD Docker AWS EC2 
+- Buat file yaml untuk proses CICD di github action, perhatikan juga branchnya
+- Pastikan membuat secret
+    - SSH HOST ubuntu
+    - SSH KEY key yang ada di dalam file .pem
+    - SSH USER DNS EC2
+    - DOCKER_HUB_USER username docker hub
+    - DOCKER_HUB_TOKEN acces token docker hub
+
+- Jalankan github action
+- file yaml ada di repository github
+- Masukan DNS:port, contoh:
+    ```ubuntu
+    http://ec2-54-179-75-24.ap-southeast-1.compute.amazonaws.com:8501/
+    ```
+- Sekarang website sudah bisa diakses secara publik
+  ![webl](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/CICD%20EC2/web.png)
 
