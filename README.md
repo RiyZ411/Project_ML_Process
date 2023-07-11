@@ -75,13 +75,13 @@ Ada beberapa tahapan dalam pembersihan data, seperti:
     #cek jumlah missing
     dataset.isna().sum()
     ```
-    ![rmissing]()
+    ![rmissing](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/missing.png)
     Hapus missing value
     ```python
     dataset = dataset.dropna()
     dataset.isna().sum()
     ```
-    ![rmissing]()
+    ![rmissing](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/rmissing.png)
 - Feature Engineering - Feature Selection:
 
     Karena tanggal tidak dimasukan di model klasifikasi, maka dihapus:
@@ -89,7 +89,7 @@ Ada beberapa tahapan dalam pembersihan data, seperti:
     dataset = dataset.drop(['tanggal'], axis=1)
     dataset
     ```
-    ![feature]()
+    ![feature](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/feature.png)
 - Label Encoding:
 
     Agar lebih optimal dalam balancing data menggunakan smote dan pada saat pemodelan, data kategori lebih baik diubah menjadi angka.
@@ -109,7 +109,7 @@ Ada beberapa tahapan dalam pembersihan data, seperti:
     dataset['categori'] = dataset['categori'].replace(['BAIK', 'TIDAK SEHAT'],[1, 0])
     dataset
     ```
-    ![label]()
+    ![label](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/label.png)
 
 
 - Balancing data
@@ -123,13 +123,13 @@ Ada beberapa tahapan dalam pembersihan data, seperti:
     dataset = pd.concat([X_res, y_res], axis=1)
     dataset
     ```
-    ![smote]()
+    ![smote](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/smote.png)
 
 - Drop duplicate
     ```PYTHON
     dataset.duplicated().sum()
     ```
-    ![dup]()
+    ![dup](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/dup.png)
 
 ### Data Defense
 Buat fungsi untuk mengecek type data yang masuk
@@ -145,7 +145,7 @@ Buat fungsi untuk mengecek type data yang masuk
     ```python
     dataset.describe()
     ```
-    ![descrb]()
+    ![descrb](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/descrb.png)
     
 - Buat fungsi check_data
     ```python
@@ -211,7 +211,7 @@ Buat fungsi untuk mengecek type data yang masuk
     # Show the plot
     plt.show()
     ```
-    ![split]()
+    ![split](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/split.png)
 
 ### Save to file yaml.
 Simpan pembagian data ke file yaml
@@ -281,7 +281,7 @@ utils.pickle_dump(y_test, config["test_set_path"][1])
     dtc.fit(x_train, y_train)
     ```
 - Plot Tree      
-    ![pltree]()
+    ![pltree](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/plotree.png)
 
 ### Evaluasi
 - Data Validation
@@ -290,12 +290,12 @@ utils.pickle_dump(y_test, config["test_set_path"][1])
         y_pred = dtc.predict(x_valid)
         print(classification_report(y_valid, y_pred))
         ```
-        ![class]()
+        ![class](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/class.png)
     - Confussion Matrix
         ```python
         ConfusionMatrixDisplay.from_predictions(y_valid, y_pred)
         ```
-        ![conf]()
+        ![conf](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/conf.png)
     - Metrik
         ```python
         y_pred_val = dtc.predict(x_valid)
@@ -329,7 +329,7 @@ utils.pickle_dump(y_test, config["test_set_path"][1])
         ax = sns.barplot(x='Evaluation Data Validation', y='Values', data=eval_val)
         plt.bar_label(ax.containers[0])
         ```
-        ![metrix]()
+        ![metrix](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/metrix%20val.png)
 - Data Training
     - Metrik 
         ```python
@@ -368,7 +368,7 @@ utils.pickle_dump(y_test, config["test_set_path"][1])
         # Show the plot
         plt.show()
         ```
-        ![metrixtrn]()
+        ![metrixtrn](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/metrix%20trn.png)
 ### Predict Data Testing
 Prediksi y_test dari x_test dengan model
 ```python
@@ -379,7 +379,7 @@ x_test["predict_categori"] = dtc.predict(x_test)
 test = pd.concat([x_test, y_test], axis = 1)
 test
 ```
-![predtes]()
+![predtes](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preprocessing/test.png)
 
 ### Simpan Model
 Simpan model yang sudah fix ke file yaml dengan format pickle (pkl)
@@ -599,11 +599,11 @@ app = FastAPI()
 ## Cara menjalankan layanan Machine Learning di komputer lokal
 ### Retraining Model 
 Arahkan command ubuntu ke folder python FastAPI, lalu jalankan server FastAPI menggunakan perintah "uvicorn api:app --reload" lalu masuk ke link untuk memastikan sudah terhubung dan akan menampilkan seperti ini:
-![fastapi]()
+![fastapi](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/manual/api.png)
 
 ### Running API
 Pastikan server fastAPI masih hidup, lalu tambah terminal lalu arahkan command ubuntu ke folder python streamlit, lalu jalankan server streamlit menggunakan perintah "streamlit run streamlit.py" lalu masuk ke link akan menampilkan seperti ini dan sudah bisa digunakan untuk memprediksi kondisi udara:                 
-![streamlit]()
+![streamlit](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/manual/streamlit.png)
 
 
 ## Cara menjalankan layanan Machine Learning via Docker
@@ -671,9 +671,9 @@ Untuk menjalankan docker di lokal computer sebagai berikut:
 - Aktifkan docker yang sudah diinstall dengan perintah "sudo service docker start"
 - Jika sudah aktif, ketik "sudo docker compose build" lalu ketik enter
 - Aktifkan docker dengan perintah "sudo docker compose up"             
-    ![compose]()
+    ![compose](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/compose.png)
 - Lalu masuk ke browser, masukkan link "http://localhost:8501/" jika berhasil, maka akan muncul seperti berikut:         
-    ![dockerlokal]()
+    ![dockerlokal](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/streamlit.png)
 
 ### Docker AWS EC2
 Untuk menjalankan docker di AWS EC2, pastikan sudah mendaftar dan membuat instance EC2 di AWS, sesuaikan OS yang digunakan. Jika sudah, nanti akan terdownload otomatis file dengan format .pem. Simpan baik-baik file tersebut, file tersebut nantinya digunakan untuk mengaktifkan EC2, berikut cara mengaktifkan EC2:
