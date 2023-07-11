@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -64,10 +64,10 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh deploy_ec2 "mkdir temp/"
-        ssh deploy_ec2 "git clone git@github.com:cbagusjk/smoke_detector.git temp/"
-        ssh deploy_ec2 "rsync -a ./temp/ ./ml_process_demo/"
+        ssh deploy_ec2 "git clone git@github.com:RiyZ411/Project_ML_Process.git temp/"
+        ssh deploy_ec2 "rsync -a ./temp/ ./Project_ML_Process/"
         ssh deploy_ec2 "rm -rf temp/"
         ssh deploy_ec2 "cd ml_process_demo/ && git lfs pull"
         ssh deploy_ec2 "cd ml_process_demo/ && sudo docker compose rm -sf api && sudo docker compose rm -sf streamlit"
-        ssh deploy_ec2 "cd ml_process_demo/ || sudo docker rmi cbagusjk/ml_process_api || sudo docker rmi cbagusjk/ml_process_streamlit"
+        ssh deploy_ec2 "cd ml_process_demo/ || sudo docker rmi ipincogan/project_ml_process_api || sudo docker rmi ipincogan/project_ml_process_streamlit"
         ssh deploy_ec2 "cd ml_process_demo/ && sudo docker compose pull && sudo docker compose up -d"
