@@ -10,4 +10,4 @@ pip install --upgrade pip && \
 pip install wheel && \
 pip install -r requirements.txt
 EXPOSE 8080
-CMD ["python","-m", "src.api"]
+CMD ["python", "src/api.py"]

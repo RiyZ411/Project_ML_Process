@@ -4,11 +4,14 @@ import joblib
 from PIL import Image
 
 # Load and set images in the first place
-header_images = Image.open('/home/riyan/MLProject/pencemaran_udara_jakarta/assets/monas.jpg')
+header_images = Image.open('assets/monas.jpg')
 st.image(header_images)
 
 # Add some information about the service
 st.title("Prediksi Polusi Udara Jakarta")
+st.write('Project ini dibuat untuk memenuhi project akhir kelas Machine Learning Process Pacmann')
+st.write('\t - Nama  : Riyan Zaenal Arifin')
+st.write('\t - Email : riyanzaenal411@gmail.com')
 st.subheader("Just enter variabel below then click Predict button :sunglasses:")
 
 # Create form of input
@@ -106,17 +109,17 @@ with st.form(key = "air_data_form"):
 
         # Create loading animation while predicting
         with st.spinner("Sending data to prediction server ..."):
-            res = requests.post(f"http://api_backend/predict", json = raw_data).json()
+            res = requests.post(f"http://api_backend:8080/predict", json = raw_data).json()
             
         # Parse the prediction result
         if res["error_msg"] != "":
             st.error("Error Occurs While Predicting: {}".format(res["error_msg"]))
         else:
-            if res["res"] != "Tidak ada api.":
-                st.warning("Ada api.")
+            if res["res"] != "Tidak ada API":
+                st.warning("Ada API")
                 if res['prediction'] == 0:
                     st.success("Kondisi udara diprediksi : TIDAK SEHAT")
                 else:
                     st.success("Kondisi udara diprediksi : BAIK")
             else:
-                st.success("Tidak ada api.")
+                st.success("Tidak ada API")

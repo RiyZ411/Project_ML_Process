@@ -1,9 +1,9 @@
+import util as utils
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
 import pandas as pd
 import numpy as np
-import util as utils
 import data_pipeline as data_pipeline
 import preprocessing as preprocessing
 
@@ -47,11 +47,11 @@ def predict(data: api_data):
     label = [0,1]
     predict = model_data.predict(data)
 
-    if y_pred[0] == []:
-        y_pred = "Tidak ada api."
+    if y_pred[0] is None:
+        y_pred = "Tidak ada API"
     else:
-        y_pred = "Ada api."
+        y_pred = "Ada API"
     return {"res" : y_pred, "error_msg": "", "prediction" : label[predict[0]]}
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", host = "0.0.0.0", port = 8000)
+    uvicorn.run("api:app", host = "0.0.0.0", port = 8080)

@@ -10,7 +10,8 @@ valid_set_path:
 test_set_path:
 - data/processed/x_test.pkl
 - data/processed/y_test.pkl
-production_model_path: /home/riyan/MLProject/pencemaran_udara_jakarta/models/production_model.pkl
+
+production_model_path: models/production_model.pkl
 
 training_log_path: log/training_log.json
 

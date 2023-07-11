@@ -2,7 +2,7 @@ import yaml
 import joblib
 from datetime import datetime
 
-config_dir = "/home/riyan/MLProject/pencemaran_udara_jakarta/config/config.yaml"
+config_dir = "config/config.yaml"
 
 def time_stamp() -> datetime:
     # Return current date and time
