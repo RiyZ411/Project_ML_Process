@@ -40,7 +40,7 @@ Simpan ke folder raw dengan format csv
 df.to_csv('/home/riyan/MLProject/pencemaran_udara_jakarta/data/raw/rawdataset', index=False)
 df
 ```
-![preparation]()
+![preparation](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/Preparation/1.png)
 
 ## Tahap Preprocessing Data
 ### Import library
