@@ -671,9 +671,9 @@ Untuk menjalankan docker di lokal computer sebagai berikut:
 - Aktifkan docker yang sudah diinstall dengan perintah "sudo service docker start"
 - Jika sudah aktif, ketik "sudo docker compose build" lalu ketik enter
 - Aktifkan docker dengan perintah "sudo docker compose up"             
-    ![compose](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/compose.png)
+    ![compose](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/EC2/running%20docker.png)
 - Lalu masuk ke browser, masukkan link "http://localhost:8501/" jika berhasil, maka akan muncul seperti berikut:         
-    ![dockerlokal](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/lokal%20komputer/docker/streamlit.png)
+    ![dockerlokal](https://github.com/RiyZ411/Project_ML_Process/blob/main/Gambar/EC2/publik.png)
 
 ### Docker AWS EC2
 Untuk menjalankan docker di AWS EC2, pastikan sudah mendaftar dan membuat instance EC2 di AWS, sesuaikan OS yang digunakan. Jika sudah, nanti akan terdownload otomatis file dengan format .pem. Simpan baik-baik file tersebut, file tersebut nantinya digunakan untuk mengaktifkan EC2, berikut cara mengaktifkan EC2:
