@@ -115,11 +115,7 @@ with st.form(key = "air_data_form"):
         if res["error_msg"] != "":
             st.error("Error Occurs While Predicting: {}".format(res["error_msg"]))
         else:
-            if res["res"] != "Tidak ada API":
-                st.warning("Ada API")
-                if res['prediction'] == 0:
-                    st.success("Kondisi udara diprediksi : TIDAK SEHAT")
-                else:
-                    st.success("Kondisi udara diprediksi : BAIK")
+            if res["res"] != "Tidak Sehat":
+                st.success("Kondisi udara diprediksi : BAIK")
             else:
-                st.success("Tidak ada API")
+                st.warning("Kondisi udara diprediksi : TIDAK SEHAT")

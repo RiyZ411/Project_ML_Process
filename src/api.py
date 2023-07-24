@@ -44,14 +44,12 @@ def predict(data: api_data):
 
     # Predict data
     y_pred = model_data.predict(data)
-    label = [0,1]
-    predict = model_data.predict(data)
 
-    if y_pred[0] is None:
-        y_pred = "Tidak ada API"
+    if y_pred[0] == 0:
+        y_pred = "Tidak Sehat"
     else:
-        y_pred = "Ada API"
-    return {"res" : y_pred, "error_msg": "", "prediction" : label[predict[0]]}
+        y_pred = "Sehat"
+    return {"res" : y_pred, "error_msg": ""}
 
 if __name__ == "__main__":
     uvicorn.run("api:app", host = "0.0.0.0", port = 8080)
