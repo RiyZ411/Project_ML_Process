@@ -1,6 +1,6 @@
-# Project Machine Learning Process PacmannAI - Architectur
+# Tugas Besar Teori Bahasa & Automata 
 - Nama  = Riyan Zaenal Arifin
-- Email = riyanzaenal411@gmail.com
+- NIM   = 5201811011
 
 ## Tahap Persiapan Data
 Import library yang dibutuhkan
