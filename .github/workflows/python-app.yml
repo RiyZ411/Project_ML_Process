@@ -54,7 +54,6 @@ jobs:
         cat >> ~/.ssh/config <<END
         Host deploy_ec2
           HostName $SSH_HOST
-          Port 443
           User $SSH_USER
           IdentityFile ~/.ssh/deployment.pem
           StrictHostKeyChecking no
