@@ -9,9 +9,10 @@ st.image(header_images)
 
 # Add some information about the service
 st.title("Prediksi Polusi Udara Jakarta")
-st.write('Project ini dibuat untuk memenuhi project akhir kelas Machine Learning Process Pacmann')
-st.write('\t - Nama  : Riyan Zaenal Arifin')
-st.write('\t - Email : riyanzaenal411@gmail.com')
+st.write('Tugas Besar Teori Bahasa & Automata')
+st.write('\t - Nama    : Riyan Zaenal Arifin')
+st.write('\t - NIM     : 5201811011')
+st.write('\t - Jurusan : Sains Data')
 st.subheader("Just enter variabel below then click Predict button :sunglasses:")
 
 # Create form of input
